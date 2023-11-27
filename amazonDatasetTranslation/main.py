@@ -1,12 +1,13 @@
 from papagopy import Papagopy
+#pip install papagopy -i http://ftp.daumkakao.com/pypi/simple --trusted-host ftp.daumkakao.com
 from datasets import load_dataset, Dataset, DatasetDict
 import pandas as pd
 translator = Papagopy() # use web api
 
 #번역할 데이터의 총 길이
-train_len = 2000 # 21000
-validation_len = 2000 # 6000
-test_len = 2000 # 3000
+train_len = 3000 # 21000
+validation_len = 3000 # 6000
+test_len = 3000 # 3000
 
 #데이터셋 로드
 subset_dataset = DatasetDict.load_from_disk("subset_dataset_30000")
@@ -37,6 +38,7 @@ for i in range(df_train.shape[0], train_len):
     if i % 10 == 0:
         df_train.to_excel("df_train.xlsx", index=False)
         print("df_train.xlsx 중간 저장됨")
+        print(f"{i} / {train_len}번역됨")
 df_train.to_excel("df_train.xlsx", index=False)
 
 #df_validation 번역
@@ -51,6 +53,7 @@ for i in range(df_validation.shape[0], validation_len):
     if i % 10 == 0:
         df_validation.to_excel("df_validation.xlsx", index=False)
         print("df_validation.xlsx 중간 저장됨")
+        print(f"{i} / {train_len}번역됨")
 df_validation.to_excel("df_validation.xlsx", index=False)
 
 #df_test 번역
@@ -65,6 +68,7 @@ for i in range(df_test.shape[0], test_len):
     if i % 10 == 0:
         df_test.to_excel("df_test.xlsx", index=False)
         print("df_test.xlsx 중간 저장됨")
+        print(f"{i} / {train_len}번역됨")
 df_test.to_excel("df_test.xlsx", index=False)
 
 
